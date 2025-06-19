@@ -1,0 +1,374 @@
+/* ========================================
+   STRIKING GEOMETRIC ANIMATIONS
+   ======================================== */
+
+/* BASE STYLING FOR ANIMATED OBJECTS */
+.striking-object {
+    width: 80px;
+    height: 80px;
+    background: var(--accent-color);
+    margin: 2rem;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    border-radius: 8px;
+}
+
+/* CONTAINER FOR ANIMATION SHOWCASE */
+.animations-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    gap: 3rem;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    margin: 2rem 0;
+    min-height: 400px;
+}
+
+.animation-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.animation-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ========================================
+   1. FLOATING ANIMATION
+   ======================================== */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translateY(-15px) rotate(2deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-25px) rotate(0deg);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translateY(-10px) rotate(-2deg);
+        opacity: 1;
+    }
+}
+
+.floating-object {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    animation: float 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+.floating-object::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: float 2s ease-in-out infinite reverse;
+}
+
+/* ========================================
+   2. ROTATING CUBE ANIMATION
+   ======================================== */
+@keyframes rotateCube {
+    0% {
+        transform: perspective(800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    25% {
+        transform: perspective(800px) rotateX(90deg) rotateY(90deg) rotateZ(0deg);
+    }
+    50% {
+        transform: perspective(800px) rotateX(180deg) rotateY(180deg) rotateZ(90deg);
+    }
+    75% {
+        transform: perspective(800px) rotateX(270deg) rotateY(270deg) rotateZ(180deg);
+    }
+    100% {
+        transform: perspective(800px) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+.rotating-cube {
+    background: linear-gradient(45deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+    border-radius: 12px;
+    animation: rotateCube 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 40px rgba(255, 107, 107, 0.4);
+}
+
+.rotating-cube::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff6b6b);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0.7;
+    animation: rotateCube 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite reverse;
+}
+
+/* ========================================
+   3. PULSING GLOW ANIMATION
+   ======================================== */
+@keyframes pulseGlow {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.4),
+                    0 0 40px rgba(16, 185, 129, 0.2),
+                    0 0 60px rgba(16, 185, 129, 0.1);
+        filter: brightness(1);
+    }
+    25% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.6),
+                    0 0 60px rgba(16, 185, 129, 0.4),
+                    0 0 90px rgba(16, 185, 129, 0.2);
+        filter: brightness(1.1);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.8),
+                    0 0 80px rgba(16, 185, 129, 0.6),
+                    0 0 120px rgba(16, 185, 129, 0.3);
+        filter: brightness(1.2);
+    }
+    75% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.6),
+                    0 0 60px rgba(16, 185, 129, 0.4),
+                    0 0 90px rgba(16, 185, 129, 0.2);
+        filter: brightness(1.1);
+    }
+}
+
+.pulsing-glow {
+    background: radial-gradient(circle, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    animation: pulseGlow 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    position: relative;
+    overflow: visible;
+}
+
+.pulsing-glow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: 40%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulseGlow 1.5s ease-in-out infinite reverse;
+}
+
+/* ========================================
+   4. MORPHING SHAPES ANIMATION
+   ======================================== */
+@keyframes morphShape {
+    0% {
+        border-radius: 50%;
+        transform: rotate(0deg) scale(1);
+        background: linear-gradient(45deg, #8b5cf6 0%, #a855f7 100%);
+    }
+    20% {
+        border-radius: 20% 80% 20% 80%;
+        transform: rotate(72deg) scale(1.05);
+        background: linear-gradient(117deg, #8b5cf6 0%, #a855f7 100%);
+    }
+    40% {
+        border-radius: 0%;
+        transform: rotate(144deg) scale(0.95);
+        background: linear-gradient(189deg, #8b5cf6 0%, #a855f7 100%);
+    }
+    60% {
+        border-radius: 80% 20% 80% 20%;
+        transform: rotate(216deg) scale(1.1);
+        background: linear-gradient(261deg, #8b5cf6 0%, #a855f7 100%);
+    }
+    80% {
+        border-radius: 20%;
+        transform: rotate(288deg) scale(0.9);
+        background: linear-gradient(333deg, #8b5cf6 0%, #a855f7 100%);
+    }
+    100% {
+        border-radius: 50%;
+        transform: rotate(360deg) scale(1);
+        background: linear-gradient(405deg, #8b5cf6 0%, #a855f7 100%);
+    }
+}
+
+.morphing-shape {
+    background: linear-gradient(45deg, #8b5cf6 0%, #a855f7 100%);
+    animation: morphShape 5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+}
+
+/* ========================================
+   5. ORBITING ANIMATION
+   ======================================== */
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translateX(60px) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(60px) rotate(-360deg);
+    }
+}
+
+@keyframes orbitReverse {
+    from {
+        transform: rotate(0deg) translateX(40px) rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg) translateX(40px) rotate(360deg);
+    }
+}
+
+.orbiting-system {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.orbit-center {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #f59e0b 0%, #d97706 100%);
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.orbit-object {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border-radius: 50%;
+    animation: orbit 4s linear infinite;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.5);
+}
+
+.orbit-object:nth-child(2) {
+    animation-delay: -1s;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 2px 10px rgba(239, 68, 68, 0.5);
+}
+
+.orbit-object:nth-child(3) {
+    animation: orbitReverse 3s linear infinite;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.5);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    .animations-showcase {
+        gap: 2rem;
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+    
+    .striking-object {
+        width: 60px;
+        height: 60px;
+        margin: 1rem;
+    }
+    
+    .orbiting-system {
+        width: 150px;
+        height: 150px;
+        margin: 1rem;
+    }
+    
+    .orbit-center {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .orbit-object {
+        width: 15px;
+        height: 15px;
+    }
+    
+    @keyframes orbit {
+        from {
+            transform: rotate(0deg) translateX(45px) rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg) translateX(45px) rotate(-360deg);
+        }
+    }
+    
+    @keyframes orbitReverse {
+        from {
+            transform: rotate(0deg) translateX(30px) rotate(0deg);
+        }
+        to {
+            transform: rotate(-360deg) translateX(30px) rotate(360deg);
+        }
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY & PERFORMANCE
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    .floating-object,
+    .rotating-cube,
+    .pulsing-glow,
+    .morphing-shape,
+    .orbit-object,
+    .orbit-center {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition: none !important;
+    }
+}
+
+/* Hardware acceleration for better performance */
+.striking-object,
+.orbit-object,
+.orbit-center {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* DARK THEME ADJUSTMENTS */
+[data-theme="dark"] .animations-showcase {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .striking-object {
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}

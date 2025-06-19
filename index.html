@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="src/styles/chart.css">
     <link rel="stylesheet" href="src/styles/testimonials.css">
     <link rel="stylesheet" href="src/styles/parallax.css">
+    <link rel="stylesheet" href="src/styles/striking-animations.css">
 </head>
 <body>
     <!-- LOADER -->
@@ -31,6 +32,7 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#showcase">Showcase</a></li>
                 <li><a href="#stats">Analytics</a></li>
+                <li><a href="#animations">Animations</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
             </ul>
             <button class="theme-toggle ripple" id="themeToggle">🌙</button>
@@ -136,6 +138,42 @@
             </p>
         </section>
 
+        <!-- ADD NEW ANIMATIONS SECTION BEFORE TESTIMONIALS -->
+        <section id="animations" class="section">
+            <h2>Striking Animations</h2>
+            <div class="animations-showcase scroll-reveal">
+                <div class="animation-item">
+                    <div class="striking-object floating-object"></div>
+                    <div class="animation-label">Floating Animation</div>
+                </div>
+                
+                <div class="animation-item">
+                    <div class="striking-object rotating-cube"></div>
+                    <div class="animation-label">3D Rotating Cube</div>
+                </div>
+                
+                <div class="animation-item">
+                    <div class="striking-object pulsing-glow"></div>
+                    <div class="animation-label">Pulsing Glow</div>
+                </div>
+                
+                <div class="animation-item">
+                    <div class="striking-object morphing-shape"></div>
+                    <div class="animation-label">Morphing Shape</div>
+                </div>
+                
+                <div class="animation-item">
+                    <div class="orbiting-system">
+                        <div class="orbit-center"></div>
+                        <div class="orbit-object"></div>
+                        <div class="orbit-object"></div>
+                        <div class="orbit-object"></div>
+                    </div>
+                    <div class="animation-label">Orbiting System</div>
+                </div>
+            </div>
+        </section>
+
         <!-- TESTIMONIALS SECTION -->
         <section id="testimonials" class="section">
             <h2>Client Testimonials</h2>
@@ -149,8 +187,10 @@
     <script src="src/js/main.js"></script>
     <script src="src/js/theme-toggle.js"></script>
     <script src="src/js/carousel.js"></script>
-    <script src="src/js/chart.js"></script>
-    <script src="src/js/testimonials.js"></script>
+
+
+
+</html></body>    <script src="src/js/chart.js"></script>    <script src="src/js/testimonials.js"></script>
     <script src="src/js/parallax.js"></script>
 </body>
 </html>
