@@ -1,0 +1,513 @@
+/* ========================================
+   MICRO-INTERACTIONS FOR ENHANCED UX
+   ======================================== */
+
+/* ========================================
+   BUTTON INTERACTIONS
+   ======================================== */
+
+/* Enhanced button press animations */
+.btn,
+.theme-toggle,
+.carousel-nav,
+.testimonials-play-pause,
+.testimonial-dot,
+.carousel-dot {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn:hover,
+.theme-toggle:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.btn:active,
+.theme-toggle:active {
+    transform: translateY(0) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+/* Button ripple effect enhancement */
+.btn::before,
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
+}
+
+.btn:active::before,
+.theme-toggle:active::before {
+    width: 200px;
+    height: 200px;
+}
+
+/* ========================================
+   INPUT FIELD INTERACTIONS
+   ======================================== */
+
+.input-field {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.input-field input,
+.input-field textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.input-field input:focus,
+.input-field textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1),
+                0 0 20px rgba(99, 102, 241, 0.2);
+    transform: translateY(-1px);
+}
+
+.input-field label {
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--card-bg);
+    padding: 0 0.25rem;
+}
+
+.input-field input:focus + label,
+.input-field input:not(:placeholder-shown) + label {
+    top: -0.5rem;
+    left: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+/* Input validation states */
+.input-field.success input {
+    border-color: var(--success-color);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.input-field.error input {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ========================================
+   CARD HOVER EFFECTS
+   ======================================== */
+
+.card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.05) 0%, 
+                rgba(139, 92, 246, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* ========================================
+   NAVIGATION LINK ANIMATIONS
+   ======================================== */
+
+.nav-links a {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a:hover::before {
+    width: 100%;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-links a:hover::after {
+    left: 100%;
+}
+
+/* ========================================
+   ICON INTERACTIONS
+   ======================================== */
+
+.icon-spin {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-spin:hover {
+    transform: rotate(180deg);
+}
+
+.icon-bounce {
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon-bounce:hover {
+    transform: scale(1.2) rotate(15deg);
+}
+
+.icon-pulse {
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+.loading-skeleton {
+    background: linear-gradient(90deg, 
+                var(--bg-secondary) 25%, 
+                rgba(99, 102, 241, 0.1) 50%, 
+                var(--bg-secondary) 75%);
+    background-size: 200% 100%;
+    animation: skeleton 1.5s ease-in-out infinite;
+    border-radius: 8px;
+    height: 1rem;
+    margin: 0.5rem 0;
+}
+
+@keyframes skeleton {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.loading-dots {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.loading-dots::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    animation: loadingDots 1.4s ease-in-out infinite both;
+}
+
+.loading-dots::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    animation: loadingDots 1.4s ease-in-out -0.16s infinite both;
+}
+
+@keyframes loadingDots {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   PROGRESS INDICATORS
+   ======================================== */
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--bg-secondary);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ========================================
+   TOAST NOTIFICATIONS
+   ======================================== */
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateX(400px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    max-width: 300px;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.toast.error {
+    border-left: 4px solid var(--error-color);
+}
+
+.toast.warning {
+    border-left: 4px solid var(--warning-color);
+}
+
+/* ========================================
+   FORM VALIDATION MICRO-INTERACTIONS
+   ======================================== */
+
+.form-group {
+    position: relative;
+    margin: 1.5rem 0;
+}
+
+.form-group .validation-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.form-group.success .validation-icon.success-icon {
+    opacity: 1;
+    color: var(--success-color);
+    animation: bounceIn 0.5s ease;
+}
+
+.form-group.error .validation-icon.error-icon {
+    opacity: 1;
+    color: var(--error-color);
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: translateY(-50%) scale(0);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.2);
+    }
+    100% {
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+/* ========================================
+   HOVER LIFT EFFECTS
+   ======================================== */
+
+.lift-on-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lift-on-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   RESPONSIVE MICRO-INTERACTIONS
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Reduce motion intensity on mobile */
+    .card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+    
+    .btn:hover,
+    .theme-toggle:hover {
+        transform: translateY(-1px) scale(1.01);
+    }
+    
+    .lift-on-hover:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY & REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .theme-toggle,
+    .card,
+    .nav-links a,
+    .input-field input,
+    .input-field textarea,
+    .lift-on-hover {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .btn:hover,
+    .theme-toggle:hover,
+    .card:hover,
+    .lift-on-hover:hover {
+        transform: none !important;
+    }
+    
+    .loading-skeleton,
+    .loading-dots::before,
+    .loading-dots::after,
+    .progress-fill::after {
+        animation: none !important;
+    }
+}
+
+/* ========================================
+   FOCUS STATES FOR ACCESSIBILITY
+   ======================================== */
+
+.btn:focus-visible,
+.theme-toggle:focus-visible,
+.nav-links a:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* ========================================
+   DARK THEME ADJUSTMENTS
+   ======================================== */
+
+[data-theme="dark"] .input-field input:focus,
+[data-theme="dark"] .input-field textarea:focus {
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2),
+                0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+[data-theme="dark"] .card::before {
+    background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.1) 0%, 
+                rgba(168, 85, 247, 0.1) 100%);
+}
+
+[data-theme="dark"] .toast {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
