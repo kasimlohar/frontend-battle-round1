@@ -4,28 +4,28 @@ class ImageCarousel {
         this.slides = [
             {
                 image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop&crop=center',
-                title: 'Slide 1',
-                description: 'Description for slide 1'
+                title: 'Analytics Dashboard',
+                description: 'Real-time data visualization and analytics'
             },
             {
                 image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=400&fit=crop&crop=center',
-                title: 'Slide 2',
-                description: 'Description for slide 2'
+                title: 'Business Intelligence',
+                description: 'Advanced reporting and insights'
             },
             {
                 image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&h=400&fit=crop&crop=center',
-                title: 'Slide 3',
-                description: 'Description for slide 3'
+                title: 'Data Visualization',
+                description: 'Interactive charts and graphs'
             },
             {
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop&crop=center',
-                title: 'Slide 4',
-                description: 'Description for slide 4'
+                title: 'Performance Metrics',
+                description: 'Key performance indicators tracking'
             },
             {
                 image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?w=800&h=400&fit=crop&crop=center',
-                title: 'Slide 5',
-                description: 'Description for slide 5'
+                title: 'Workflow Automation',
+                description: 'Streamlined business processes'
             }
         ];
         this.currentSlide = 0;
@@ -41,25 +41,28 @@ class ImageCarousel {
         this.generateHTML();
         this.setupImageLoading();
         this.addEventListeners();
+        this.updateSlidePosition();
         this.startAutoPlay();
     }
     
     generateHTML() {
         this.container.innerHTML = `
-            <div class="carousel-container">
-                <div class="carousel-slides">
-                    ${this.slides.map((slide, index) => `
-                        <div class="carousel-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
-                            <img ${index === 0 ? 'src' : 'data-src'}="${slide.image}" 
-                                 alt="${slide.title}" 
-                                 loading="${index === 0 ? 'eager' : 'lazy'}"
-                                 ${index > 0 ? 'class="lazy-loading"' : ''}>
-                            <div class="carousel-content">
-                                <h3>${slide.title}</h3>
-                                <p>${slide.description}</p>
+            <div class="carousel-wrapper">
+                <div class="carousel-container">
+                    <div class="carousel-slides">
+                        ${this.slides.map((slide, index) => `
+                            <div class="carousel-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
+                                <img src="${slide.image}" 
+                                     alt="${slide.title}" 
+                                     loading="${index === 0 ? 'eager' : 'lazy'}"
+                                     style="opacity: 0; transition: opacity 0.3s ease;">
+                                <div class="carousel-content">
+                                    <h3>${slide.title}</h3>
+                                    <p>${slide.description}</p>
+                                </div>
                             </div>
-                        </div>
-                    `).join('')}
+                        `).join('')}
+                    </div>
                 </div>
                 <button class="carousel-nav prev" aria-label="Previous slide">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -71,6 +74,13 @@ class ImageCarousel {
                         <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
+                <div class="carousel-dots">
+                    ${this.slides.map((_, index) => `
+                        <button class="carousel-dot ${index === 0 ? 'active' : ''}" 
+                                data-slide="${index}" 
+                                aria-label="Go to slide ${index + 1}"></button>
+                    `).join('')}
+                </div>
             </div>
         `;
         
@@ -79,6 +89,7 @@ class ImageCarousel {
         this.slideElements = this.container.querySelectorAll('.carousel-slide');
         this.prevBtn = this.container.querySelector('.prev');
         this.nextBtn = this.container.querySelector('.next');
+        this.dots = this.container.querySelectorAll('.carousel-dot');
         this.images = this.container.querySelectorAll('.carousel-slide img');
     }
     
@@ -86,42 +97,53 @@ class ImageCarousel {
         this.images.forEach((img, index) => {
             const slide = this.slideElements[index];
             
-            // Check if image is already loaded
+            // Add loading state
+            slide.classList.add('loading');
+            
+            const handleLoad = () => {
+                slide.classList.remove('loading');
+                slide.classList.add('loaded');
+                img.style.opacity = '1';
+                this.loadedImages.add(index);
+            };
+
+            const handleError = () => {
+                slide.classList.remove('loading');
+                slide.classList.add('error');
+                img.style.opacity = '0.5';
+                console.warn(`Failed to load carousel image ${index + 1}`);
+            };
+
             if (img.complete && img.naturalHeight !== 0) {
-                this.handleImageLoad(slide, index);
+                handleLoad();
             } else {
-                // Add event listeners for loading
-                img.addEventListener('load', () => {
-                    this.handleImageLoad(slide, index);
-                });
-                
-                img.addEventListener('error', () => {
-                    this.handleImageError(slide, index);
-                });
+                img.addEventListener('load', handleLoad, { once: true });
+                img.addEventListener('error', handleError, { once: true });
             }
         });
     }
     
-    handleImageLoad(slide, index) {
-        slide.classList.add('loaded');
-        this.loadedImages.add(index);
-    }
-    
-    handleImageError(slide, index) {
-        slide.classList.add('error');
-        console.warn(`Failed to load carousel image ${index + 1}`);
-    }
-    
     addEventListeners() {
         // Navigation buttons
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
+        this.prevBtn.addEventListener('click', () => {
+            this.pauseAutoPlay();
+            this.prevSlide();
+            this.resumeAutoPlay();
+        });
+        
+        this.nextBtn.addEventListener('click', () => {
+            this.pauseAutoPlay();
+            this.nextSlide();
+            this.resumeAutoPlay();
+        });
         
         // Dots navigation
         this.dots.forEach(dot => {
             dot.addEventListener('click', (e) => {
                 const slideIndex = parseInt(e.target.dataset.slide);
+                this.pauseAutoPlay();
                 this.goToSlide(slideIndex);
+                this.resumeAutoPlay();
             });
         });
         
@@ -157,9 +179,9 @@ class ImageCarousel {
         
         if (Math.abs(swipeDistance) > swipeThreshold) {
             if (swipeDistance > 0) {
-                this.nextSlide(); // Swipe left - next slide
+                this.nextSlide();
             } else {
-                this.prevSlide(); // Swipe right - previous slide
+                this.prevSlide();
             }
         }
     }
@@ -182,17 +204,24 @@ class ImageCarousel {
     }
     
     goToSlide(index) {
-        // Remove active class from current slide and dot
+        // Remove active classes
         this.slideElements[this.currentSlide].classList.remove('active');
+        this.dots[this.currentSlide].classList.remove('active');
         
-        // Update current slide index
+        // Update current slide
         this.currentSlide = index;
         
-        // Add active class to new slide 
+        // Add active classes
         this.slideElements[this.currentSlide].classList.add('active');
+        this.dots[this.currentSlide].classList.add('active');
         
-        // Update transform for smooth transition
-        this.slidesContainer.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+        // Update position
+        this.updateSlidePosition();
+    }
+    
+    updateSlidePosition() {
+        const translateX = -this.currentSlide * 100;
+        this.slidesContainer.style.transform = `translateX(${translateX}%)`;
     }
     
     nextSlide() {
@@ -209,7 +238,7 @@ class ImageCarousel {
         this.isPlaying = true;
         this.autoPlayInterval = setInterval(() => {
             this.nextSlide();
-        }, 3000);
+        }, 4000);
     }
     
     pauseAutoPlay() {
