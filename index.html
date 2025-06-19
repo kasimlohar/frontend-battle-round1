@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend Battle - Portfolio Dashboard</title>
+    <title>Portfolio Dashboard - Frontend Battle'25</title>
+    
+    <!-- Performance Optimization: Preload critical resources -->
+    <link rel="preload" href="src/styles/themes.css" as="style">
+    <link rel="preload" href="src/styles/main.css" as="style">
+    <link rel="preload" href="src/js/main.js" as="script">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//picsum.photos">
+    <link rel="dns-prefetch" href="//ui-avatars.com">
+    
+    <!-- Stylesheets -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/styles/themes.css">
     <link rel="stylesheet" href="src/styles/main.css">
@@ -223,14 +234,18 @@
         </section>
     </main>
 
-    <script src="src/js/main.js"></script>
+    <!-- Scripts - Optimized loading order -->
     <script src="src/js/theme-toggle.js"></script>
+    <script src="src/js/main.js"></script>
     <script src="src/js/carousel.js"></script>
-    <script src="src/js/chart.js"></script>
-    <script src="src/js/testimonials.js"></script>
-    <script src="src/js/parallax.js"></script>
-    <script src="src/js/micro-interactions.js"></script>
-    <script src="src/js/portfolio-grid.js"></script>
-    <script src="src/js/contact-form.js"></script>
+    <script src="src/js/performance-optimizer.js"></script>
+    
+    <!-- Deferred non-critical scripts -->
+    <script src="src/js/chart.js" defer></script>
+    <script src="src/js/testimonials.js" defer></script>
+    <script src="src/js/parallax.js" defer></script>
+    <script src="src/js/micro-interactions.js" defer></script>
+    <script src="src/js/portfolio-grid.js" defer></script>
+    <script src="src/js/contact-form.js" defer></script>
 </body>
 </html>

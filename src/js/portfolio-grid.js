@@ -149,7 +149,7 @@ class PortfolioGrid {
         return `
             <div class="portfolio-item" data-category="${item.category}" data-id="${item.id}">
                 <div class="portfolio-image">
-                    <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    <img data-src="${item.image}" alt="${item.title}" loading="lazy" class="lazy-loading">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h3>${item.title}</h3>
