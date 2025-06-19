@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="src/styles/responsive.css">
     <link rel="stylesheet" href="src/styles/carousel.css">
     <link rel="stylesheet" href="src/styles/chart.css">
+    <link rel="stylesheet" href="src/styles/testimonials.css">
 </head>
 <body>
     <!-- LOADER -->
@@ -132,16 +133,10 @@
         <!-- TESTIMONIALS SECTION -->
         <section id="testimonials" class="section">
             <h2>Client Testimonials</h2>
-            <div class="cards-container">
-                <div class="card scroll-reveal">
-                    <p>"Outstanding work on our portfolio website. The animations are smooth and the design is modern."</p>
-                    <div style="margin-top: 1rem; font-weight: 600;">- John Doe, CEO</div>
-                </div>
-                <div class="card scroll-reveal">
-                    <p>"Exceptional attention to detail and responsive design. Highly recommended!"</p>
-                    <div style="margin-top: 1rem; font-weight: 600;">- Jane Smith, Designer</div>
-                </div>
-            </div>
+            <div class="testimonials-slider-container scroll-reveal"></div>
+            <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary);">
+                Auto-rotating testimonials • Hover to pause • Use arrow keys or swipe to navigate
+            </p>
         </section>
     </main>
 
@@ -149,5 +144,6 @@
     <script src="src/js/theme-toggle.js"></script>
     <script src="src/js/carousel.js"></script>
     <script src="src/js/chart.js"></script>
+    <script src="src/js/testimonials.js"></script>
 </body>
 </html>

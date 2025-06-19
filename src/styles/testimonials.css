@@ -1,0 +1,403 @@
+/* TESTIMONIALS SLIDER STYLES */
+.testimonials-slider-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    position: relative;
+}
+
+.testimonials-slider {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow-light);
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonials-container {
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+.testimonial-slide.fade-out {
+    opacity: 0;
+}
+
+.testimonial-slide.fade-in {
+    opacity: 1;
+}
+
+.testimonial-content {
+    text-align: center;
+    max-width: 600px;
+    position: relative;
+}
+
+.quote-icon {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+/* Alternative: Use CSS-only quote icon if SVG issues persist */
+.quote-icon::before {
+    content: '"';
+    font-size: 4rem;
+    font-family: Georgia, serif;
+    color: var(--accent-color);
+    opacity: 0.3;
+    line-height: 1;
+    display: block;
+}
+
+/* Hide SVG if using CSS quote */
+.quote-icon.css-quote svg {
+    display: none;
+}
+
+.testimonial-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.author-avatar:hover {
+    transform: scale(1.1);
+}
+
+.author-info {
+    text-align: left;
+}
+
+.author-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.author-position {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* CONTROLS */
+.testimonials-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.testimonials-dots {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.testimonial-dot {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.testimonial-dot:hover {
+    background: var(--accent-color);
+    transform: scale(1.2);
+}
+
+.testimonial-dot.active {
+    background: var(--accent-color);
+    transform: scale(1.3);
+}
+
+.testimonial-dot:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+.dot-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--text-primary);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: none;
+}
+
+.testimonial-dot.active .dot-progress {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes testimonialProgress {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.testimonials-play-pause {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.testimonials-play-pause:hover {
+    background: var(--accent-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.testimonials-play-pause:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+.testimonials-play-pause svg {
+    transition: opacity 0.2s ease;
+}
+
+.testimonials-play-pause .hidden {
+    opacity: 0;
+    position: absolute;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .testimonials-slider-container {
+        margin: 1rem 0.5rem;
+    }
+    
+    .testimonial-slide {
+        padding: 2rem 1.5rem;
+        min-height: 250px;
+    }
+    
+    .testimonials-container {
+        min-height: 250px;
+    }
+    
+    .testimonial-text {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-author {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+    
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .author-info {
+        text-align: center;
+    }
+    
+    .author-name {
+        font-size: 1rem;
+    }
+    
+    .author-position {
+        font-size: 0.85rem;
+    }
+    
+    .testimonials-controls {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .testimonials-dots {
+        gap: 0.5rem;
+    }
+    
+    .testimonial-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .testimonials-play-pause {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-slide {
+        padding: 1.5rem 1rem;
+    }
+    
+    .testimonial-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .quote-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .author-name {
+        font-size: 0.95rem;
+    }
+    
+    .author-position {
+        font-size: 0.8rem;
+    }
+    
+    .testimonials-controls {
+        padding: 0.75rem 1rem;
+    }
+    
+    .testimonial-dot {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .testimonials-play-pause {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .testimonials-play-pause svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* DARK THEME ADJUSTMENTS */
+[data-theme="dark"] .testimonial-text {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .author-avatar {
+    border-color: var(--accent-color);
+}
+
+[data-theme="dark"] .dot-progress {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    .testimonial-slide {
+        transition: none;
+    }
+    
+    .testimonial-dot {
+        transition: none;
+    }
+    
+    .testimonials-play-pause {
+        transition: none;
+    }
+    
+    .author-avatar {
+        transition: none;
+    }
+    
+    .dot-progress {
+        animation: none !important;
+    }
+}
+
+/* HIGH CONTRAST MODE */
+@media (prefers-contrast: high) {
+    .testimonials-slider {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .testimonial-dot {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .testimonials-play-pause {
+        border: 2px solid white;
+    }
+}
+
+/* FOCUS VISIBLE SUPPORT */
+.testimonial-dot:focus-visible,
+.testimonials-play-pause:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
