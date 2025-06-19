@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="src/styles/striking-animations.css">
     <link rel="stylesheet" href="src/styles/micro-interactions.css">
     <link rel="stylesheet" href="src/styles/portfolio-grid.css">
+    <link rel="stylesheet" href="src/styles/contact-form.css">
 </head>
 <body>
     <!-- LOADER -->
@@ -190,6 +191,36 @@
                 Auto-rotating testimonials • Hover to pause • Use arrow keys or swipe to navigate
             </p>
         </section>
+
+        <!-- CONTACT FORM SECTION -->
+        <section id="contact" class="section">
+            <h2>Get In Touch</h2>
+            <form class="contact-form scroll-reveal">
+                <h3>Send us a message</h3>
+                
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your full name" required>
+                    <div class="validation-icon"></div>
+                    <div class="validation-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your email address" required>
+                    <div class="validation-icon"></div>
+                    <div class="validation-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your message" required></textarea>
+                    <div class="validation-icon"></div>
+                    <div class="validation-message"></div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    Send Message
+                </button>
+            </form>
+        </section>
     </main>
 
     <script src="src/js/main.js"></script>
@@ -200,5 +231,6 @@
     <script src="src/js/parallax.js"></script>
     <script src="src/js/micro-interactions.js"></script>
     <script src="src/js/portfolio-grid.js"></script>
+    <script src="src/js/contact-form.js"></script>
 </body>
 </html>

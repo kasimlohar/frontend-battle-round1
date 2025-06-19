@@ -1,0 +1,320 @@
+/* ========================================
+   CONTACT FORM STYLES
+   ======================================== */
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.contact-form h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    font-size: 1.8rem;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--input-bg, rgba(255, 255, 255, 0.05));
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+    transform: translateY(-2px);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    font-family: inherit;
+}
+
+/* Validation Icons */
+.validation-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.form-group.success .validation-icon {
+    opacity: 1;
+    color: var(--success-color);
+}
+
+.form-group.error .validation-icon {
+    opacity: 1;
+    color: var(--error-color);
+}
+
+.validation-icon .success-icon,
+.validation-icon .error-icon {
+    display: none;
+}
+
+/* Validation Messages */
+.validation-message {
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    font-size: 0.85rem;
+    color: var(--error-color);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Success and Error States */
+.form-group.success input,
+.form-group.success textarea {
+    border-color: var(--success-color);
+    background: rgba(var(--success-rgb), 0.05);
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    border-color: var(--error-color);
+    background: rgba(var(--error-rgb), 0.05);
+    animation: inputShake 0.5s ease;
+}
+
+.form-group.shake {
+    animation: shake 0.5s ease;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(var(--accent-rgb), 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.submit-btn.loading {
+    color: transparent;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+/* Success Message */
+.form-success-message {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(var(--success-rgb), 0.1), rgba(var(--success-rgb), 0.05));
+    border: 2px solid var(--success-color);
+    border-radius: 16px;
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-success-message.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.success-icon-large {
+    font-size: 3rem;
+    color: var(--success-color);
+    margin-bottom: 1rem;
+    animation: bounceIn 0.6s ease;
+}
+
+.form-success-message h3 {
+    color: var(--success-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-success-message p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    max-width: 350px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.success {
+    border-left-color: var(--success-color);
+    background: linear-gradient(135deg, rgba(var(--success-rgb), 0.1), var(--card-bg));
+}
+
+.toast.error {
+    border-left-color: var(--error-color);
+    background: linear-gradient(135deg, rgba(var(--error-rgb), 0.1), var(--card-bg));
+}
+
+/* Confetti Animation */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff6b6b;
+    animation: confettiFall 4s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes inputShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-form {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .toast {
+        right: 1rem;
+        left: 1rem;
+        max-width: none;
+    }
+    
+    .form-success-message {
+        margin: 1rem;
+    }
+}
+
+/* CSS Variables for Colors */
+:root {
+    --success-color: #10b981;
+    --success-rgb: 16, 185, 129;
+    --error-color: #ef4444;
+    --error-rgb: 239, 68, 68;
+    --warning-color: #f59e0b;
+    --warning-rgb: 245, 158, 11;
+}
