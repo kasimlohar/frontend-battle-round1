@@ -2,35 +2,36 @@ class ImageCarousel {
     constructor(container) {
         this.container = container;
         this.slides = [
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop&crop=center', // Modern workspace/tech
-            'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=400&fit=crop&crop=center', // Web development code
-            'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&h=400&fit=crop&crop=center', // UI/UX design mockups
-            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop&crop=center', // Data visualization
-            'https://images.unsplash.com/photo-1555421689-491a97ff2040?w=800&h=400&fit=crop&crop=center'  // Team collaboration/modern office
+            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=400&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&h=400&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1555421689-491a97ff2040?w=800&h=400&fit=crop&crop=center'
         ];
         this.currentSlide = 0;
         this.autoPlayInterval = null;
         this.isPlaying = false;
         this.touchStartX = 0;
         this.touchEndX = 0;
+        this.loadedImages = new Set();
         this.init();
     }
     
     init() {
         this.generateHTML();
+        this.setupImageLoading();
         this.addEventListeners();
         this.startAutoPlay();
     }
     
     generateHTML() {
-        // Create carousel structure
         this.container.innerHTML = `
             <div class="carousel-wrapper">
                 <div class="carousel-container">
                     <div class="carousel-slides">
                         ${this.slides.map((slide, index) => `
                             <div class="carousel-slide ${index === 0 ? 'active' : ''}" data-slide="${index}">
-                                <img src="${slide}" alt="Slide ${index + 1}" loading="lazy">
+                                <img src="${slide}" alt="Portfolio project ${index + 1}" loading="lazy">
                             </div>
                         `).join('')}
                     </div>
@@ -59,6 +60,37 @@ class ImageCarousel {
         this.dots = this.container.querySelectorAll('.carousel-dot');
         this.prevBtn = this.container.querySelector('.prev');
         this.nextBtn = this.container.querySelector('.next');
+        this.images = this.container.querySelectorAll('.carousel-slide img');
+    }
+    
+    setupImageLoading() {
+        this.images.forEach((img, index) => {
+            const slide = this.slideElements[index];
+            
+            // Check if image is already loaded
+            if (img.complete && img.naturalHeight !== 0) {
+                this.handleImageLoad(slide, index);
+            } else {
+                // Add event listeners for loading
+                img.addEventListener('load', () => {
+                    this.handleImageLoad(slide, index);
+                });
+                
+                img.addEventListener('error', () => {
+                    this.handleImageError(slide, index);
+                });
+            }
+        });
+    }
+    
+    handleImageLoad(slide, index) {
+        slide.classList.add('loaded');
+        this.loadedImages.add(index);
+    }
+    
+    handleImageError(slide, index) {
+        slide.classList.add('error');
+        console.warn(`Failed to load carousel image ${index + 1}`);
     }
     
     addEventListeners() {

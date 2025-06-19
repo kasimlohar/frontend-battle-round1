@@ -30,12 +30,12 @@
 .carousel-slide {
     width: 20%;
     flex-shrink: 0;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-}
-
-.carousel-slide.active {
-    opacity: 1;
+    position: relative;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
 }
 
 .carousel-slide img {
@@ -43,7 +43,7 @@
     height: 400px;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .carousel-slide:hover img {
@@ -129,29 +129,55 @@
     outline-offset: 3px;
 }
 
-/* LOADING STATE */
-.carousel-slide img:not([src]) {
-    background: var(--bg-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-slide img:not([src])::after {
+/* IMAGE LOADING STATES */
+.carousel-slide::before {
     content: 'Loading...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: var(--text-secondary);
     font-size: 1rem;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-slide.loaded::before {
+    opacity: 0;
+}
+
+.carousel-slide img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-slide.loaded img {
+    opacity: 1;
+}
+
+.carousel-slide.error::before {
+    content: 'Failed to load image';
+    color: var(--error-color);
 }
 
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     .image-carousel {
-        margin: 1rem;
+        margin: 1rem 0.5rem;
         border-radius: 8px;
+    }
+    
+    .carousel-slide {
+        min-height: 250px;
     }
     
     .carousel-slide img {
         height: 250px;
+    }
+    
+    .carousel-slide::before {
+        font-size: 0.9rem;
     }
     
     .carousel-nav {
@@ -184,6 +210,15 @@
 }
 
 @media (max-width: 480px) {
+    .image-carousel {
+        margin: 1rem 0.25rem;
+        border-radius: 6px;
+    }
+    
+    .carousel-slide {
+        min-height: 200px;
+    }
+    
     .carousel-slide img {
         height: 200px;
     }
@@ -192,6 +227,14 @@
         width: 35px;
         height: 35px;
         opacity: 0.9;
+    }
+    
+    .carousel-nav.prev {
+        left: 8px;
+    }
+    
+    .carousel-nav.next {
+        right: 8px;
     }
     
     .carousel-nav svg {
