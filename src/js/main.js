@@ -59,13 +59,16 @@ document.querySelectorAll('.ripple').forEach(button => {
     });
 });
 
-// PARALLAX EFFECT
+// PARALLAX EFFECT (Updated to work with ParallaxController)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.hero');
-    const speed = scrolled * 0.5;
     
-    if (parallax) {
-        parallax.style.transform = `translateY(${speed}px)`;
-    }
+    // Only apply to non-parallax elements
+    const nonParallaxElements = document.querySelectorAll('.hero-bg, .hero-overlay');
+    nonParallaxElements.forEach(element => {
+        if (element && !element.classList.contains('parallax-layer')) {
+            const speed = scrolled * 0.3;
+            element.style.transform = `translateY(${speed}px)`;
+        }
+    });
 });

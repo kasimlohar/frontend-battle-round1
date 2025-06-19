@@ -1,0 +1,41 @@
+/* LIGHTWEIGHT MOBILE PARALLAX */
+@media (max-width: 767px) {
+    .hero {
+        background-attachment: fixed;
+        background-image: var(--gradient-bg);
+        background-size: cover;
+        background-position: center;
+    }
+    
+    /* Simple CSS-only parallax effect */
+    .parallax-container {
+        display: block !important;
+        height: 120vh;
+        overflow: hidden;
+    }
+    
+    .parallax-layer {
+        position: absolute;
+        top: -20vh;
+        left: 0;
+        right: 0;
+        bottom: -20vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    
+    /* Disable JavaScript parallax on mobile */
+    .parallax-layer[style] {
+        transform: none !important;
+    }
+}
+
+/* For devices that support CSS parallax */
+@supports (background-attachment: fixed) {
+    @media (max-width: 767px) {
+        .parallax-layer {
+            background-attachment: fixed;
+        }
+    }
+}

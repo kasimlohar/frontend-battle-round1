@@ -20,13 +20,50 @@
         font-size: 0.9rem;
     }
     
+    .hero {
+        min-height: 100vh !important;
+        padding: 80px 1rem 2rem 1rem !important;
+        margin-top: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: var(--gradient-bg) !important;
+        position: relative;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--gradient-bg);
+        z-index: 0;
+    }
+    
+    .hero > div {
+        width: 100%;
+        max-width: 100%;
+        z-index: 10;
+        position: relative;
+        padding: 1rem;
+    }
+    
     .hero h1 {
-        font-size: 1.8rem;
+        font-size: 1.8rem !important;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: white !important;
     }
     
     .hero p {
-        font-size: 1rem;
-        padding: 0 1rem;
+        font-size: 1rem !important;
+        padding: 0;
+        line-height: 1.5;
+        opacity: 0.9;
+        color: white !important;
     }
     
     .section {
@@ -57,6 +94,11 @@
         height: 32px;
         font-size: 0.8rem;
     }
+    
+    /* Ensure parallax container doesn't interfere */
+    .parallax-container {
+        display: none !important;
+    }
 }
 
 /* Mobile (480px - 767px) */
@@ -65,12 +107,49 @@
         display: none;
     }
     
+    .hero {
+        min-height: 100vh !important;
+        padding: 80px 2rem 2rem 2rem !important;
+        margin-top: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: var(--gradient-bg) !important;
+        position: relative;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--gradient-bg);
+        z-index: 0;
+    }
+    
+    .hero > div {
+        width: 100%;
+        max-width: 600px;
+        z-index: 10;
+        position: relative;
+        padding: 1rem;
+    }
+    
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2rem !important;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: white !important;
     }
     
     .hero p {
-        font-size: 1.1rem;
+        font-size: 1.1rem !important;
+        line-height: 1.5;
+        opacity: 0.9;
+        color: white !important;
     }
     
     .section {
@@ -89,6 +168,11 @@
     .card {
         padding: 1.8rem;
     }
+    
+    /* Ensure parallax container doesn't interfere */
+    .parallax-container {
+        display: none !important;
+    }
 }
 
 /* Tablet (768px - 1023px) */
@@ -106,12 +190,26 @@
         font-size: 0.9rem;
     }
     
+    .hero {
+        min-height: 100vh;
+        padding: 120px 2rem 4rem 2rem;
+        margin-top: -80px;
+    }
+    
+    .hero > div {
+        z-index: 10;
+        position: relative;
+    }
+    
     .hero h1 {
         font-size: 2.5rem;
+        margin-bottom: 1rem;
     }
     
     .hero p {
         font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
     
     .section {
@@ -147,12 +245,26 @@
         gap: 2rem;
     }
     
+    .hero {
+        min-height: 100vh;
+        padding-top: 120px;
+        margin-top: -80px;
+    }
+    
+    .hero > div {
+        z-index: 10;
+        position: relative;
+    }
+    
     .hero h1 {
         font-size: 3rem;
+        margin-bottom: 1rem;
     }
     
     .hero p {
         font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
     
     .section {
@@ -184,13 +296,26 @@
         padding: 0 3rem;
     }
     
+    .hero {
+        min-height: 100vh;
+        padding-top: 120px;
+        margin-top: -80px;
+    }
+    
+    .hero > div {
+        z-index: 10;
+        position: relative;
+    }
+    
     .hero h1 {
         font-size: 3.5rem;
+        margin-bottom: 1rem;
     }
     
     .hero p {
         font-size: 1.3rem;
         max-width: 700px;
+        margin: 0 auto;
     }
     
     .section {
@@ -346,5 +471,105 @@
     
     * {
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* MOBILE HERO SPECIFIC FIXES */
+@media (max-width: 767px) {
+    .main-content {
+        margin-top: 0 !important;
+    }
+    
+    .hero {
+        background: var(--gradient-bg) !important;
+        color: white !important;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--gradient-bg);
+        z-index: 0;
+    }
+    
+    .hero > div {
+        position: relative;
+        z-index: 10;
+        color: white;
+    }
+    
+    .hero h1,
+    .hero p {
+        color: white !important;
+    }
+    
+    .parallax-container {
+        display: none !important;
+    }
+    
+    /* Fix navbar spacing on mobile */
+    .navbar {
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    /* Fix for very small screens */
+    @media (max-height: 600px) {
+        .hero {
+            min-height: 600px !important;
+            padding: 80px 1rem 2rem 1rem !important;
+        }
+    }
+    
+    /* Fix for small mobile devices */
+    @media (max-width: 360px) {
+        .hero h1 {
+            font-size: 1.6rem !important;
+        }
+        
+        .hero p {
+            font-size: 0.9rem !important;
+        }
+    }
+}
+
+/* LANDSCAPE MOBILE ORIENTATION */
+@media (max-width: 767px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh !important;
+        padding: 60px 2rem 1rem 2rem !important;
+    }
+    
+    .hero h1 {
+        font-size: 1.6rem !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem !important;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ENSURE PROPER SCROLLING */
+@media (max-width: 767px) {
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+    
+    .section {
+        width: 100%;
+        overflow-x: hidden;
     }
 }
