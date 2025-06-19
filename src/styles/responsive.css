@@ -1,0 +1,350 @@
+/* MOBILE FIRST RESPONSIVE DESIGN */
+/* Base styles are mobile-first (320px and up) */
+
+/* Small Mobile (320px - 479px) */
+@media (max-width: 479px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .theme-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .section {
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+    
+    .section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .brand-kit {
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+    
+    .brand-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .section {
+        padding: 2rem 1rem;
+    }
+    
+    .section h2 {
+        font-size: 2rem;
+    }
+    
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .card {
+        padding: 1.8rem;
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .nav-container {
+        padding: 0 2rem;
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .section {
+        padding: 3rem 2rem;
+    }
+    
+    .section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .card {
+        padding: 1.8rem;
+    }
+    
+    .brand-kit {
+        padding: 1.2rem;
+    }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .nav-container {
+        max-width: 1200px;
+        padding: 0 2rem;
+    }
+    
+    .nav-links {
+        gap: 2rem;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .section {
+        padding: 4rem 2rem;
+    }
+    
+    .section h2 {
+        font-size: 2.5rem;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+    
+    .card {
+        padding: 2rem;
+    }
+    
+    .brand-kit {
+        padding: 1.5rem;
+    }
+}
+
+/* Large Desktop (1440px and up) */
+@media (min-width: 1440px) {
+    .nav-container {
+        max-width: 1400px;
+        padding: 0 3rem;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+        max-width: 700px;
+    }
+    
+    .section {
+        max-width: 1400px;
+        padding: 5rem 3rem;
+    }
+    
+    .section h2 {
+        font-size: 3rem;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+    }
+    
+    .card {
+        padding: 2.5rem;
+    }
+    
+    .brand-kit {
+        padding: 2rem;
+        margin: 1.5rem 0;
+    }
+    
+    .brand-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+    }
+}
+
+/* HOVER EFFECTS RESPONSIVE ADJUSTMENTS */
+@media (max-width: 767px) {
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .brand-kit:hover {
+        transform: translateX(2px);
+    }
+    
+    .theme-toggle:hover {
+        transform: scale(1.02);
+    }
+}
+
+@media (min-width: 768px) {
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .brand-kit:hover {
+        transform: translateX(5px);
+    }
+    
+    .theme-toggle:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* TOUCH DEVICE OPTIMIZATIONS */
+@media (hover: none) and (pointer: coarse) {
+    .card:hover,
+    .brand-kit:hover,
+    .theme-toggle:hover {
+        transform: none;
+    }
+    
+    .card:active {
+        transform: scale(0.98);
+    }
+    
+    .theme-toggle {
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+/* PRINT STYLES */
+@media print {
+    .navbar,
+    .loader,
+    .theme-toggle {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-top: 0;
+    }
+    
+    .hero {
+        margin-top: 0;
+        padding-top: 2rem;
+        background: none !important;
+        color: black !important;
+    }
+    
+    .section {
+        min-height: auto;
+        padding: 2rem 0;
+        page-break-inside: avoid;
+    }
+    
+    .card {
+        border: 1px solid #000;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+    
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* HIGH CONTRAST MODE */
+@media (prefers-contrast: high) {
+    :root {
+        --accent-color: #0000ff;
+        --border-color: #000000;
+        --text-primary: #000000;
+    }
+    
+    [data-theme="dark"] {
+        --accent-color: #ffff00;
+        --border-color: #ffffff;
+        --text-primary: #ffffff;
+    }
+    
+    .card {
+        border-width: 2px;
+    }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+        transform: none;
+        opacity: 1;
+    }
+    
+    .card:hover,
+    .brand-kit:hover,
+    .theme-toggle:hover {
+        transform: none;
+    }
+    
+    .spinner {
+        animation: none;
+    }
+    
+    * {
+        transition-duration: 0.01ms !important;
+    }
+}

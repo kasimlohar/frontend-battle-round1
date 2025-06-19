@@ -241,25 +241,6 @@ body {
 .icorp { background: #f59e0b; }
 .agency { background: #ef4444; }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .section {
-        padding: 2rem 1rem;
-    }
-    
-    .section h2 {
-        font-size: 2rem;
-    }
-}
-
 /* RIPPLE EFFECT */
 .ripple {
     position: relative;
