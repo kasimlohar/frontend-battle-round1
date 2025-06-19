@@ -1,0 +1,21 @@
+{
+  "name": "frontend-portfolio",
+  "version": "1.0.0",
+  "description": "A modern portfolio dashboard showcasing frontend development.",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server",
+    "build": "webpack --mode production",
+    "test": "jest"
+  },
+  "author": "Kasim Lohar",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "webpack": "^5.0.0",
+    "jest": "^26.0.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.0.0"
+  }
+}
